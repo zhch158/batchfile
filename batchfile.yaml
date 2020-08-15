@@ -1,0 +1,12 @@
+#全局设置
+config:
+    workdir: F:/workspace/repository.git/batchfile
+    yyyymmdd: '20200815'
+    
+tbspacn0:
+    输入文件:
+        #- [方法名, 文件名, 跳过行数]
+        - ["${workdir}/tbspacn0.${yyyymmdd}.txt", 1, 49]
+        - ["${workdir}/tbsptac0.${yyyymmdd}.txt", 1, 49]
+    输出文件: ${workdir}/tbspacn0_merge.${yyyymmdd}.txt
+    处理方法: "merge_tbspacn0"
