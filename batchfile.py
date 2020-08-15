@@ -6,6 +6,7 @@ from utility import load_from_yaml
 from jinja2 import Environment, FileSystemLoader, Template
 
 import merge_tbspacn0
+import gen_test_data
 
 if __name__ == "__main__":
     # 测试用
@@ -23,7 +24,8 @@ if __name__ == "__main__":
 
     if(len(sys.argv) == 1):
         # parser.print_help()
-        args=parser.parse_args('--config ./batchfile.yaml'.split())
+        # args=parser.parse_args('--config ./batchfile.yaml'.split())
+        args=parser.parse_args('--workdir ./ --yyyymmdd 20200815 --config ./batchfile.yaml --section gen_test_tbspacn0'.split())
         # args=parser.parse_args('--workdir ./data --config ./batchfile.yaml --section tbspacn0'.split())
     else:
         args=parser.parse_args()
@@ -68,3 +70,22 @@ if __name__ == "__main__":
                 print('Func{%s] is not found' %(tb_func))
             else:
                 func(main_file, main_begin, main_length, temp_file, temp_begin, temp_length, o_file=tb_output)
+
+    elif(section_name=="gen_test_tbspacn0"):
+        tb_dict=config_dic.get("gen_test_tbspacn0", None)
+        if(tb_dict!=None):
+            tb_list=tb_dict.get("输出文件", None)
+            tb_func=tb_dict.get("处理方法", None)
+            main_file, main_rows=tb_list[0]
+            temp_file, temp_rows=tb_list[1]
+
+            print("func=%s, main_file=%s, main_rows=%d, temp_file=%s, temp_rows=%d)" 
+                %(tb_func, main_file, main_rows, temp_file, temp_rows))
+            if(temp_rows<=0 or temp_rows>=main_rows/10):
+                print("temp_rows must less than main_rows/10")
+                exit(1)
+            func=getattr(gen_test_data, tb_func, None)
+            if(func==None):
+                print('Func{%s] is not found' %(tb_func))
+            else:
+                func(main_file, main_rows, temp_file, temp_rows)

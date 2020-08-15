@@ -10,3 +10,10 @@ tbspacn0:
         - ["${workdir}/tbsptac0.${yyyymmdd}.txt", 1, 49]
     输出文件: ${workdir}/tbspacn0_merge.${yyyymmdd}.txt
     处理方法: "merge_tbspacn0"
+
+gen_test_tbspacn0:
+    输出文件:
+        #- [方法名, 文件名, 跳过行数]
+        - ["${workdir}/tbspacn0.${yyyymmdd}.txt", 110]
+        - ["${workdir}/tbsptac0.${yyyymmdd}.txt", 10]
+    处理方法: "gen_test_tbspacn0"
