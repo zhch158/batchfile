@@ -27,8 +27,8 @@ def gen_test_tbspacn0(main_file, main_rows, temp_file, temp_rows):
             out_str='CN00' + 'KEY%042d' %main_row_count + 'MAIN%0909d-TAC0' %temp_row_count
             f2.write(out_str)
             f2.write('\n')
+        if(main_row_count%int(main_rows/10)==0):
             print("[%s], have generated tbspacn0[%d], tbsptac0[%d]" %(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), main_row_count, temp_row_count))
- 
 
     temp_row_count += 1
     main_row_count += 1
