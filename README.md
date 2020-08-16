@@ -30,5 +30,5 @@ optional arguments:
     1. 根据gen_test_tbspacn0配置, 产生tbspacn测试数据
         time python batchfile.py -c batchfile.yaml -s gen_test_tbspacn0 -w F:/tmp/data -d 20200815
     2. 根据tbspacn0配置, 合并当日tbsptac0数据
-        time python batchfile.py -c batchfile.yaml -s tbspacn0 - w F:/tmp/data -d 20200815
+        time python batchfile.py -c batchfile.yaml -s tbspacn0 -w F:/tmp/data -d 20200815
 ```
