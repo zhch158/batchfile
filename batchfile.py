@@ -46,7 +46,7 @@ if __name__ == "__main__":
     if(yyyymmdd!=None):
         config['yyyymmdd']=yyyymmdd
     
-    TemplateLoader = FileSystemLoader(searchpath=['.'])
+    TemplateLoader = FileSystemLoader(searchpath=[os.path.dirname(configfile)])
     env = Environment(loader=TemplateLoader, variable_start_string='${', variable_end_string='}')
     md01 = env.get_template(configfile)
     content = md01.render(config)
